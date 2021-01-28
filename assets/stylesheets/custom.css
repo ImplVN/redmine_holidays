@@ -2,3 +2,10 @@
   background-color: #ffc4c4;
 }
 
+.calendar__holiday-title {
+  margin: 0;
+}
+
+.calendar__holiday-spacing {
+  margin-bottom: 8px;
+}

@@ -1,0 +1,13 @@
+<% holidays = RedmineHolidays.in(day) %>
+<% if holidays.any? %>
+  <h5 class="calendar__holiday-title"><%= t("redmine_holidays.common.calendar.holiday_title") %></h5>
+
+  <% holidays.each do |holiday| %>
+    <div>
+      <span class="flag-icon flag-icon-<%= holiday.country %>"></span>
+      <span><%= holiday.name %></span>
+    </div>
+  <% end %>
+
+  <div class="calendar__holiday-spacing"></div>
+<% end %>
