@@ -11,3 +11,11 @@
 #### Adding new language
 
 - Create new `country_code.yml` inside `lib/redmine_holidays` with Hash structure
+
+#### Install
+
+```bash
+git clone https://github.com/ImplVN/redmine_holidays.git /path/to/redmine/plugins
+RAILS_ENV=production bundle exec rails redmine:plugins:migrate
+sudo systemctl restart <rails_server_service>
+```
