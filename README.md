@@ -8,10 +8,6 @@
   - Vietnamese
   - Japanese (using `holiday_jp` gem)
 
-#### Adding new language
-
-- Create new `country_code.yml` inside `lib/redmine_holidays` with Hash structure
-
 #### Install
 
 ```bash

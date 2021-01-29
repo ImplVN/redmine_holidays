@@ -1,13 +1,15 @@
-<% holidays = RedmineHolidays.in(day) %>
+<% @holidays_manager ||= RedmineHolidays.new(calendar.startdt, calendar.enddt) %>
+<% holidays = @holidays_manager.in(day) %>
 <% if holidays.any? %>
-  <h5 class="calendar__holiday-title"><%= t("redmine_holidays.common.calendar.holiday_title") %></h5>
-
+  <h5 id="holiday-<%= day.to_date %>" class="calendar__holiday-title"><%= t("redmine_holidays.common.calendar.holiday_title") %></h5>
   <% holidays.each do |holiday| %>
     <div>
       <span class="flag-icon flag-icon-<%= holiday.country %>"></span>
       <span><%= holiday.name %></span>
     </div>
   <% end %>
-
   <div class="calendar__holiday-spacing"></div>
+  <script>
+    $("#holiday-<%= day.to_date %>").closest("td").addClass("calendar__day--holiday")
+  </script>
 <% end %>

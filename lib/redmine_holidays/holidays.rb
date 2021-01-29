@@ -3,28 +3,8 @@ require "yaml"
 class RedmineHolidays::Holidays
   attr_accessor :holidays
 
-  def initialize
-    self.holidays = {}
-    load_holidays
-  end
-
-  def load_holidays
-    data_files = Dir[File.expand_path("../*.yml" ,__FILE__)]
-    data_files.each do |filename|
-      country = File.basename(filename, ".yml")
-      holidays = YAML.load_file(filename)
-      holidays.map do |date, name|
-        self.holidays[date] ||= []
-        holiday = RedmineHolidays::Holiday.new(date: date, name: name, country: country)
-        self.holidays[date].push(holiday)
-      end
-    end
-
-    HolidayJp.holidays.holidays.each do |date, holiday_jp|
-      self.holidays[date] ||= []
-      holiday = RedmineHolidays::Holiday.new(date: date, name: holiday_jp.name, country: :jp)
-      self.holidays[date].push(holiday)
-    end
+  def initialize(start_date, end_date)
+    load(start_date, end_date)
   end
 
   def holiday?(date)
@@ -33,5 +13,13 @@ class RedmineHolidays::Holidays
 
   def in(date)
     holidays[date.to_date] || []
+  end
+
+  def load(start_date, end_date)
+    self.holidays = {}
+    Holiday.where("date BETWEEN ? AND ?", start_date, end_date).each do |holiday|
+      self.holidays[holiday.date.to_date] ||= []
+      self.holidays[holiday.date.to_date].push(holiday)
+    end
   end
 end

@@ -1,0 +1,24 @@
+<%= error_messages_for 'holiday' %>
+<%= back_url_hidden_field_tag %>
+<div class="box tabular">
+  <p>
+    <%= f.label :country %>
+    <%= f.select :country, Holiday.country.options, include_blank: true %>
+  </p>
+  <p>
+    <%= f.label :name do %>
+      <%= Holiday.human_attribute_name(:name) %>
+      <span class="required">*</span>
+    <% end %>
+    <%= f.text_field :name, require: true %>
+  </p>
+  <p>
+    <%= f.label :date do %>
+      <%= Holiday.human_attribute_name(:date) %>
+      <span class="required">*</span>
+    <% end %>
+    <%= f.date_field :date, :size => 10, :required => true %>
+    <%= calendar_for('holiday_date') %>
+  </p>
+  <%= f.submit l(:button_save) %>
+</div>

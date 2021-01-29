@@ -3,3 +3,21 @@ en:
     common:
       calendar:
         holiday_title: Holidays
+    import_service:
+      error: "Row %{row_no}: %{message}"
+  activerecord:
+    models:
+      holiday: Holiday
+    attributes:
+      holiday:
+        name: Name
+        date: Date
+        country: Country
+  holidays:
+    index:
+      new: New holiday
+  enumerize:
+    holiday:
+      country:
+        jp: Japan
+        vn: Vietnam

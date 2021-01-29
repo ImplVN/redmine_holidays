@@ -1,0 +1,26 @@
+<% holidays = Holiday.all %>
+<%= link_to t(".new"), new_holiday_path, :class => 'icon icon-add new-issue' %>
+<table class="list issues">
+  <thead>
+    <tr>
+      <th><%= Holiday.human_attribute_name(:name) %></th>
+      <th><%= Holiday.human_attribute_name(:date) %></th>
+      <th align="center" style="width:10%;"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% holidays.each do |holiday| %>
+      <tr class="<%= cycle("odd", "even") %> hascontextmenu ">
+        <td>
+          <span class="flag-icon flag-icon-<%= holiday.country %>"></span>
+          <%= holiday.name %>
+        </td>
+        <td><%= format_date(holiday.date) %></td>
+        <td class="buttons">
+          <%= link_to l(:button_edit), edit_holiday_path(holiday), :class => 'icon icon-edit' %>
+          <%= link_to l(:button_delete), holiday_path(holiday), :method => :delete, :confirm => l(:text_are_you_sure), :class => 'icon icon-del' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

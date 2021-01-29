@@ -13,7 +13,7 @@ while day <= calendar.enddt %>
 <p class="day-num"><%= day.day %></p>
 
 <%# Added %>
-<%= call_hook(:view_calendar_issues_top, day: day) %>
+<%= call_hook(:view_calendar_issues_top, day: day, calendar: calendar) %>
 
 <% calendar.events_on(day).each do |i| %>
   <% if i.is_a? Issue %>
@@ -32,7 +32,7 @@ while day <= calendar.enddt %>
 <% end %>
 
 <%# Added %>
-<%= call_hook(:view_calendar_issues_bottom, day: day) %>
+<%= call_hook(:view_calendar_issues_bottom, day: day, calendar: calendar) %>
 
 </td>
 <%= '</tr><tr>'.html_safe if day.cwday==calendar.last_wday and day!=calendar.enddt %>

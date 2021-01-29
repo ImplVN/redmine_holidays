@@ -3,3 +3,21 @@ ja:
     common:
       calendar:
         holiday_title: 祝日
+    import_service:
+      error: "%{row_no}行目: %{message}"
+  activerecord:
+    models:
+      holiday: 祝日
+    attributes:
+      holiday:
+        name: Name
+        date: Date
+        country: Country
+  holidays:
+    index:
+      new: New holiday
+  enumerize:
+    holiday:
+      country:
+        jp: 日本
+        vn: ベトナム

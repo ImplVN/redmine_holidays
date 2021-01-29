@@ -1,1 +1,2 @@
-gem "holiday_jp"
+gem "holiday_jp", require: false
+gem "enumerize"
